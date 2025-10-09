@@ -1,42 +1,91 @@
+/* Root Layout */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background: linear-gradient(135deg, #e3f0ff 0%, #fafcff 100%);
+  min-height: 100vh;
 }
 
+/* Dashboard container */
 .dashboard {
   text-align: left;
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem;
 }
 
+/* Order Item Card */
 .order-item {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 5px;
+  border: none;
+  background: #f8fbff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  transition: box-shadow 0.25s;
+}
+.order-item:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
 }
 
+/* Order List */
 .order-list {
   margin-top: 2rem;
 }
 
+/* Order Filter */
 .order-filter {
   margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.order-filter select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #b0c4de;
+  background: #f7f9fc;
 }
 
+/* Order Stats */
 .order-stats {
   margin: 1rem 0;
-  padding: 1rem;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+  padding: 1.5rem;
+  background-color: #e1ecf7;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-weight: 500;
 }
 
+/* Order Form */
 .order-form {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin: 1rem 0;
+  border: none;
+  background: #f8fbff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+}
+.order-form label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.order-form input, .order-form select {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.4rem 0 1rem 0;
+  border: 1px solid #b0c4de;
   border-radius: 5px;
+  background: #f7f9fc;
 }
 
+/* Items row in the form */
 .item-row {
   display: flex;
   gap: 0.5rem;
@@ -45,4 +94,47 @@
 
 .item-row input {
   flex: 1;
+}
+
+/* Button styles */
+button {
+  background: #1976d2;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #1562b0;
+}
+
+/* Badge for order status */
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: 8px;
+  font-size: 0.95em;
+  color: white;
+  font-weight: 600;
+  margin-left: 0.5em;
+}
+.badge.pending { background: #fbc02d; }
+.badge.shipped { background: #1976d2; }
+.badge.delivered { background: #43a047; }
+
+/* Responsive */
+@media (max-width: 700px) {
+  #root, .dashboard {
+    padding: 0.5rem;
+  }
+  .order-form, .order-item, .order-stats {
+    padding: 1rem;
+  }
+  .item-row {
+    flex-direction: column;
+  }
 }
