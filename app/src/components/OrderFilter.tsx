@@ -1,11 +1,9 @@
 import React from "react";
 import { OrderStatus } from "./OrderItem";
-
 export interface OrderFilterProps {
   filter: "" | OrderStatus;
   onFilterChange: (status: "" | OrderStatus) => void;
 }
-
 const OrderFilter: React.FC<OrderFilterProps> = ({ filter, onFilterChange }) => (
   <div className="order-filter">
     <label htmlFor="status-filter">Filtrar por Estado:</label>
@@ -21,5 +19,4 @@ const OrderFilter: React.FC<OrderFilterProps> = ({ filter, onFilterChange }) => 
     </select>
   </div>
 );
-
 export default OrderFilter;

@@ -6,12 +6,12 @@ export interface OrderFormProps {
 }
 
 const OrderForm: React.FC<OrderFormProps> = ({ onAddOrder }) => {
-  const [customer, setCustomer] = useState("");
+  const [customer, setCustomer] = useState<string>("");
   const [items, setItems] = useState<OrderProduct[]>([
     { productId: 0, name: "", quantity: 1, price: 0 },
   ]);
   const [status, setStatus] = useState<OrderStatus>("pending");
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [date, setDate] = useState<string>(new Date().toISOString().split("T")[0]);
 
   const handleItemChange = (
     index: number,
@@ -43,8 +43,8 @@ const OrderForm: React.FC<OrderFormProps> = ({ onAddOrder }) => {
       alert("Customer name must be at least 3 characters");
       return;
     }
-    if (items.some((item) => !item.name || item.quantity <= 0 || !item.price)) {
-      alert("All item fields must be filled and quantity > 0");
+    if (items.some((item) => !item.name || item.quantity <= 0 || item.price <= 0 || item.productId <= 0)) {
+      alert("All item fields must be filled, quantity > 0, price > 0, and productId > 0");
       return;
     }
     const newOrder: OrderItemProps = {
@@ -95,7 +95,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ onAddOrder }) => {
         <div key={index} className="item-row">
            <input
                 type="number"
-                placeholder="Cantidad"
+                placeholder="Product ID"
                 value={item.productId}
                 onChange={(e) => handleItemChange(index, "productId", e.target.value)}
                 required
