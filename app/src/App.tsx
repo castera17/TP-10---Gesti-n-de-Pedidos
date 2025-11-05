@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import OrderForm from "./components/OrderForm";
@@ -35,21 +35,17 @@ const FiltroEstadisticas = ({
 );
 
 const App: React.FC = () => {
-  const [orders, setOrders] = useState<OrderItemProps[]>(initialOrders);  // Tipificación explícita para evitar errores de tipo
+  const [orders, setOrders] = useState<OrderItemProps[]>(initialOrders);
   const [filter, setFilter] = useState<string>("");
 
-  const filteredOrders = useMemo(() => {
-    if (!filter) return orders;
-    return orders.filter((order) => order.status === filter);
-  }, [filter, orders]);
+  const filteredOrders =
+    !filter ? orders : orders.filter((order) => order.status === filter);
 
-  const stats = useMemo(() => {
-    const total = orders.length;
-    const pending = orders.filter((o) => o.status === "pending").length;
-    const shipped = orders.filter((o) => o.status === "shipped").length;
-    const delivered = orders.filter((o) => o.status === "delivered").length;
-    return { total, pending, shipped, delivered };
-  }, [orders]);
+  const total = orders.length;
+  const pending = orders.filter((o) => o.status === "pending").length;
+  const shipped = orders.filter((o) => o.status === "shipped").length;
+  const delivered = orders.filter((o) => o.status === "delivered").length;
+  const stats = { total, pending, shipped, delivered };
 
   const handleAddOrder = (newOrder: OrderItemProps) => setOrders([...orders, newOrder]);
 
